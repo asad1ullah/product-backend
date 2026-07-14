@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet --version)",
+      "Bash(dotnet --list-sdks)",
+      "Bash(dotnet --list-runtimes)",
+      "Bash(dotnet new *)",
+      "Bash(dotnet build *)",
+      "Bash(timeout 8 dotnet run --urls http://localhost:5299)",
+      "Bash(dotnet add *)",
+      "Bash(dotnet tool *)",
+      "Bash(dotnet ef *)",
+      "PowerShell(Get-AppLockerPolicy *)",
+      "Bash(sqllocaldb info *)",
+      "Bash(timeout 10 dotnet run --urls http://localhost:5299)",
+      "Bash(dotnet run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5299/api/products)",
+      "Bash(curl -s http://localhost:5299/api/products)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5299/api/products/999)",
+      "Bash(curl -s -w \"\\\\n%{http_code}\\\\n\" -X POST http://localhost:5299/api/products -H \"Content-Type: application/json\" -d '{\"name\":\"Widget\",\"description\":\"A test widget\",\"price\":9.99}')"
+    ]
+  }
+}
