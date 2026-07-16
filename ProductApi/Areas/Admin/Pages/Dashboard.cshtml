@@ -1,0 +1,34 @@
+@page
+@model ProductApi.Areas.Admin.Pages.DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card text-bg-primary">
+            <div class="card-body">
+                <h6 class="card-title">Total Events</h6>
+                <p class="display-6 mb-0">@Model.TotalEvents</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-bg-success">
+            <div class="card-body">
+                <h6 class="card-title">Total Users</h6>
+                <p class="display-6 mb-0">@Model.TotalUsers</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-bg-info">
+            <div class="card-body">
+                <h6 class="card-title">Upcoming Events</h6>
+                <p class="display-6 mb-0">@Model.UpcomingEvents</p>
+            </div>
+        </div>
+    </div>
+</div>

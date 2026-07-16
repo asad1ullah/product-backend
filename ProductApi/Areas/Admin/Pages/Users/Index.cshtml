@@ -1,0 +1,35 @@
+@page
+@model ProductApi.Areas.Admin.Pages.Users.IndexModel
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h2 class="mb-4">Users</h2>
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.Email</td>
+                <td>
+                    <span class="badge @(user.Role == "Admin" ? "bg-danger" : "bg-secondary")">@user.Role</span>
+                </td>
+                <td>@user.CreatedAt.ToString("g")</td>
+            </tr>
+        }
+        @if (!Model.Users.Any())
+        {
+            <tr><td colspan="4" class="text-center text-muted">No users yet.</td></tr>
+        }
+    </tbody>
+</table>

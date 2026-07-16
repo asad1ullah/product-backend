@@ -1,0 +1,54 @@
+@page
+@model ProductApi.Areas.Admin.Pages.Events.IndexModel
+@{
+    ViewData["Title"] = "Events";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Events</h2>
+    <a class="btn btn-primary" asp-page="/Events/Create">Create Event</a>
+</div>
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Organizer</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Capacity</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ev in Model.Events)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(ev.ImageUrl))
+                    {
+                        <img src="@ev.ImageUrl" alt="@ev.Title" style="width:60px;height:60px;object-fit:cover;" />
+                    }
+                </td>
+                <td>@ev.Title</td>
+                <td>@ev.CategoryName</td>
+                <td>@ev.OrganizerUsername</td>
+                <td>@ev.StartDate.ToString("g")</td>
+                <td>@ev.EndDate.ToString("g")</td>
+                <td>@ev.Capacity</td>
+                <td>@ev.Price.ToString("C")</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-secondary" asp-page="/Events/Edit" asp-route-id="@ev.Id">Edit</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-page="/Events/Delete" asp-route-id="@ev.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        @if (!Model.Events.Any())
+        {
+            <tr><td colspan="9" class="text-center text-muted">No events yet.</td></tr>
+        }
+    </tbody>
+</table>

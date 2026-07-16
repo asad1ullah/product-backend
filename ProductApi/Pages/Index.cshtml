@@ -1,0 +1,54 @@
+@page
+@model ProductApi.Pages.IndexModel
+@{
+    ViewData["Title"] = "Upcoming Events";
+}
+
+<div class="eb-hero text-center">
+    <div class="container">
+        <h1 class="display-5 mb-2">Discover Events</h1>
+        <p class="lead mb-0">Browse what's coming up and find something worth showing up for.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    @if (!Model.Events.Any())
+    {
+        <p class="text-center text-muted">No upcoming events right now. Check back soon.</p>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var ev in Model.Events)
+            {
+                <div class="col">
+                    <a class="text-decoration-none text-dark" asp-page="/Events/Details" asp-route-id="@ev.Id">
+                        <div class="card eb-card h-100">
+                            @if (!string.IsNullOrEmpty(ev.ImageUrl))
+                            {
+                                <img src="@ev.ImageUrl" class="card-img-top" alt="@ev.Title" />
+                            }
+                            else
+                            {
+                                <div class="eb-card-placeholder">@ev.Title.Substring(0, 1).ToUpper()</div>
+                            }
+                            <div class="card-body">
+                                @if (!string.IsNullOrEmpty(ev.CategoryName))
+                                {
+                                    <span class="badge bg-light text-dark border mb-2">@ev.CategoryName</span>
+                                }
+                                <h5 class="card-title">@ev.Title</h5>
+                                <p class="card-text text-muted mb-1">@ev.StartDate.ToString("dddd, MMM d - h:mm tt")</p>
+                                @if (!string.IsNullOrEmpty(ev.Location))
+                                {
+                                    <p class="card-text text-muted small mb-2">@ev.Location</p>
+                                }
+                                <span class="badge bg-primary eb-price-badge">@ev.Price.ToString("C")</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    }
+</div>

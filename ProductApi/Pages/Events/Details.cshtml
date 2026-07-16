@@ -1,0 +1,50 @@
+@page "{id:int}"
+@model ProductApi.Pages.Events.DetailsModel
+@{
+    ViewData["Title"] = Model.Event?.Title ?? "Event";
+}
+
+<div class="container py-5">
+    <a asp-page="/Index" class="text-decoration-none">&larr; Back to events</a>
+
+    <div class="row mt-4 g-4">
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.Event!.ImageUrl))
+            {
+                <img src="@Model.Event.ImageUrl" alt="@Model.Event.Title" class="img-fluid rounded shadow-sm w-100" style="max-height:420px;object-fit:cover;" />
+            }
+            else
+            {
+                <div class="eb-card-placeholder rounded" style="height:420px;font-size:4rem;">@Model.Event.Title.Substring(0, 1).ToUpper()</div>
+            }
+        </div>
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.Event.CategoryName))
+            {
+                <span class="badge bg-light text-dark border mb-2">@Model.Event.CategoryName</span>
+            }
+            <h1 class="mb-3">@Model.Event.Title</h1>
+
+            <ul class="list-unstyled text-muted mb-4">
+                <li class="mb-1">📅 @Model.Event.StartDate.ToString("dddd, MMMM d, yyyy - h:mm tt") &ndash; @Model.Event.EndDate.ToString("h:mm tt")</li>
+                @if (!string.IsNullOrEmpty(Model.Event.Location))
+                {
+                    <li class="mb-1">📍 @Model.Event.Location</li>
+                }
+                @if (!string.IsNullOrEmpty(Model.Event.OrganizerUsername))
+                {
+                    <li class="mb-1">👤 Organized by @Model.Event.OrganizerUsername</li>
+                }
+                <li class="mb-1">🎟️ @Model.Event.Capacity seats available</li>
+            </ul>
+
+            <span class="badge bg-primary fs-6 mb-4">@Model.Event.Price.ToString("C")</span>
+
+            @if (!string.IsNullOrEmpty(Model.Event.Description))
+            {
+                <h5>About this event</h5>
+                <p class="text-muted">@Model.Event.Description</p>
+            }
+        </div>
+    </div>
+</div>
