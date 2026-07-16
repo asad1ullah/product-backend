@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductApi.Data;
@@ -36,6 +37,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Create(Product product)
     {
         _context.Products.Add(product);
@@ -44,6 +46,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<IActionResult> Update(int id, Product product)
     {
         var existing = await _context.Products.FindAsync(id);
@@ -61,6 +64,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
         var product = await _context.Products.FindAsync(id);

@@ -1,5 +1,6 @@
 {
   "permissions": {
+    "defaultMode": "bypassPermissions",
     "allow": [
       "Bash(dotnet --version)",
       "Bash(dotnet --list-sdks)",
@@ -20,7 +21,8 @@
       "Bash(curl -s -w \"\\\\n%{http_code}\\\\n\" -X POST http://localhost:5299/api/products -H \"Content-Type: application/json\" -d '{\"name\":\"Widget\",\"description\":\"A test widget\",\"price\":9.99}')",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "PowerShell(sqllocaldb info mssqllocaldb)"
     ]
   }
 }

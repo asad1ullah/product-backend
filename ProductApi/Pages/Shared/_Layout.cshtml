@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Event Board</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <style>
+        :root { --eb-accent: #6f42c1; }
+        body { background: #f7f7fb; }
+        .eb-navbar { background: linear-gradient(90deg, #4b2ca0, #6f42c1); }
+        .eb-hero {
+            background: linear-gradient(135deg, #4b2ca0 0%, #6f42c1 55%, #9b5de5 100%);
+            color: #fff;
+            padding: 4rem 0 3rem;
+        }
+        .eb-hero h1 { font-weight: 700; }
+        .eb-card { transition: transform .15s ease, box-shadow .15s ease; border: none; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+        .eb-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.12); }
+        .eb-card img { height: 180px; object-fit: cover; }
+        .eb-card-placeholder {
+            height: 180px;
+            background: linear-gradient(135deg, #6f42c1, #9b5de5);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,.85);
+            font-size: 2rem;
+        }
+        .eb-price-badge { font-size: .95rem; }
+        footer { color: #888; padding: 2rem 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark eb-navbar mb-0">
+        <div class="container">
+            <a class="navbar-brand fw-semibold" asp-page="/Index">Event Board</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" asp-page="/Index">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Admin/Account/Login">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+    <footer class="text-center small">
+        &copy; @DateTime.Now.Year Event Board
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
